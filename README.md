@@ -53,5 +53,5 @@ To test if it's working, make sure the virtual environment is activated, cd into
 ```
 venv\scripts\activate
 cd program
-python3 main.py
+python3 main.py (also try python main.py if you get dependency errors!!!)
 ```
