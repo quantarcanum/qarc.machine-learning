@@ -27,13 +27,14 @@ if __name__ == "__main__":
 In project root add a **.env** file for storing environment variables (make sure it's git ignored).<br>
 
 ### Create venv virtual environment 
-From Visual Studio Code (or not), from root directory, open a terminal window (Terminal > New Terminal).<br>
+From Visual Studio Code (from root directory), open a terminal window (Terminal > New Terminal).<br>
 Check python version in the bottom right corner. Click on it then click on "Select at workspace level"<br>
 Now select **Python ver ('venv':venv)**. Make sure you use this Python to activate the virtual environments and install the requirements.
+See this guide for more info about vs code and environments: https://code.visualstudio.com/docs/python/environments
 
 Create the virtual environment, then check venv folder was created:
 ```
-python3 -m venv venv
+python -m venv venv
 ```
 
 ### Activate virtual environment and install dependencies
@@ -53,5 +54,5 @@ To test if it's working, make sure the virtual environment is activated, cd into
 ```
 venv\scripts\activate
 cd program
-python3 main.py (also try python main.py if you get dependency errors!!!)
+python main.py (also py main.py works)
 ```
