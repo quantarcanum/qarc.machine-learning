@@ -28,10 +28,9 @@ In project root add a **.env** file for storing environment variables (make sure
 
 ### Create venv virtual environment 
 From Visual Studio Code (or not), from root directory, open a terminal window (Terminal > New Terminal).<br>
-Check python 3 version:
-```
-python3 --version
-```
+Check python version in the bottom right corner. Click on it then click on "Select at workspace level"<br>
+Now select **Python ver ('venv':venv)**. Make sure you use this Python to activate the virtual environments and install the requirements.
+
 Create the virtual environment, then check venv folder was created:
 ```
 python3 -m venv venv
@@ -42,9 +41,11 @@ To activate the environment you have a scripts folder and an **activate** powers
 ```
 venv\scripts\activate
 ```
+*To deactivate the virtual environment just run ```deactivate```
+
 Once the virtual environment has been activated, install the necessary libraries by running:
 ```
-pip3 install -r libraries.txt
+pip3 install -r requirements.txt
 ```
 
 ### Run the program
