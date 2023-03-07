@@ -57,7 +57,4 @@ cd program
 python main.py (also py main.py works)
 ```
 
-If any of the pacakages don't work, just go to root directory and install them manually as such:
-```
-pip install python-decouple
-```
+*If any of the pacakages don't work, just go to root directory and install them manually. Ex: ```pip install python-decouple```
