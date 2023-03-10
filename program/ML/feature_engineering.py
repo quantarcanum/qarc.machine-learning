@@ -8,17 +8,16 @@ class FeatureEngineering():
 
         # feature engineering
         self.df_engineered = self.df.copy()
-        self._compute_price_log_returns()
-        self._compute_price_log_returns_cumulative_sum()
-        self._compute_price_normal_returns_cumulative_sum()
+        #self._compute_price_log_returns()
+        #self._compute_price_log_returns_cumulative_sum()
+        #self._compute_price_normal_returns_cumulative_sum()
 
-        self._drop_NaNs()
+        #self._drop_NaNs()
 
 
     def get_engineered_dataframe(self):
         return self.df_engineered
 
-    
     def _compute_price_log_returns(self):
         """
         ML works best with price percent changes rather than price absolute values.
@@ -54,5 +53,13 @@ class FeatureEngineering():
         When computing values on SEQUENTIAL data, e.g a 5 period SMA, the first four rows will have sma=NaN, you will get SMA values from row 5 on
         We cannot feed ML with NaN data so we need to either drop it or fill it with something (a mean value or 0)
         """
+        hasNull = self.df_engineered.isnull().values.any()
+        print(f"Has Null: {hasNull}")
+        hasInf = self.df_engineered.isin([np.inf, -np.inf]).values.any()
+        print(f"has Inf: {hasInf}")
         self.df_engineered.dropna(inplace = True) # is equal to df = df.dropna()
-        #self.df_engineered.fillna(0, inplace = True)
+        #self.df_engineered.fillna(df_engineered.mean(), inplace = True)
+        hasNull = self.df_engineered.isnull().values.any()
+        print(f"Has Null: {hasNull}")
+        hasInf = self.df_engineered.isin([np.inf, -np.inf]).values.any()
+        print(f"has Inf: {hasInf}")

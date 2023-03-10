@@ -50,7 +50,7 @@ grpcio==1.47.0
 gym-notices==0.0.7
 gym==0.24.0
 hexbytes==0.3.0
-hmmlearn==0.2.7
+hmmlearn==0.2.8
 idna==3.4
 importlib-metadata==4.11.4
 ipywidgets==7.7.1
@@ -58,7 +58,7 @@ jsonschema==4.17.3
 kiwisolver==1.4.3
 kneed==0.7.0
 lru-dict==1.1.8
-matplotlib==3.5.2
+matplotlib==3.7.1
 more-itertools==9.0.0
 mpmath==1.0.0
 msgpack==1.0.4
@@ -82,6 +82,7 @@ pyDeprecate==0.3.2
 pyasn1-modules==0.2.8
 pycodestyle==2.10.0
 pycryptodome==3.16.0
+pyhhmm==2.0.1
 pymongo==4.3.3
 pyrsistent==0.19.2
 pytest==4.6.11
@@ -101,6 +102,7 @@ rlp==2.0.1
 rsa==4.8
 scipy==1.9.3
 six==1.16.0
+scikit-learn==1.2.1
 statsmodels==0.13.5
 sympy==1.6
 tensorboard==2.9.1

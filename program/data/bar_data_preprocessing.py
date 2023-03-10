@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-class BarDataManipulation():
+class BarDataPreprocessing():
 
     def __init__(self, dataframe):
         self.df = dataframe
@@ -9,12 +9,16 @@ class BarDataManipulation():
 
         # computation
         self.df_computed = self.df.copy()
-        self._compute_duration_in_seconds()
-        self._compute_volume_per_second()
-        self._compute_ticks_per_second()
-        self._compute_bid_ask_ratio()
-        self._compute_stacked_imbalance()
-        self._compute_bar_profile()
+        #self._compute_duration_in_seconds()
+        #self._compute_volume_per_second()
+        #self._compute_ticks_per_second()
+        #self._compute_bid_ask_ratio()
+        #self._compute_delta_vol_ratio()
+        #self._compute_delta_variation()
+        #self._compute_bar_range()
+        #self._compute_bar_spread_stats()
+        #self._compute_stacked_imbalance()
+        #self._compute_bar_profile()
 
 
     def get_dataframe(self):
@@ -31,9 +35,10 @@ class BarDataManipulation():
         """
         self.df = self.df[["TickValue", "TickSize", "TrendTicks", "ReversalTicks", "Time", "LastTime", "IsBomb", "IsPivot", "Open", "High", "Low", "Close", "Volume", "Delta", "MinDelta", "MaxDelta", "Ticks", "Bid", "Ask", "AllPriceLevels" ]]
         self.df = self.df.astype({"TickValue": "float", "TickSize": "float", "TrendTicks": "int", "ReversalTicks": "int", "Open": "float", "High": "float", "Low": "float", "Close": "float", "Volume" : "float", "Delta": "float", "MinDelta": "float", "MaxDelta": "float", "Ticks": "float", "Bid": "float", "Ask": "float" })
-        self.df['time'] = self.df['Time'].copy()                
-        self.df = self.df.groupby(['TrendTicks'])               
-        self.df = self.df.apply(lambda x: x.set_index("time"))
+        self.df['time'] = pd.to_datetime(self.df['Time']).copy()
+        self.df = self.df.set_index('time')             
+        #self.df = self.df.groupby(['TrendTicks'])               
+        #self.df = self.df.apply(lambda x: x.set_index("time"))
 
     def _compute_duration_in_seconds(self):
         self.df_computed['duration_sec'] = (self.df_computed['LastTime'] - self.df_computed['Time']).dt.total_seconds()
@@ -69,9 +74,13 @@ class BarDataManipulation():
         """
         Ex: if MinDelta is -500 but the bar closes towards the MaxDelta = +600
         There was a war in the bar and the bulls won.
-        But how can I normalize the data?
+        But how can I normalize the data? Data Scaling? delta_variation / delta_variation.max() gives a percentage of the maximum delta variation.
         """
         self.df_computed['delta_variation'] = abs(self.df_computed['MaxDelta'] - self.df_computed['MinDelta'])
+
+    def _compute_bar_range(self):
+        """This gives me bar voilatility"""
+        self.df_computed['bar_range'] = (self.df_computed['High'] / self.df_computed['Low']) - 1
 
     def _compute_bar_spread_stats(self):
         """
